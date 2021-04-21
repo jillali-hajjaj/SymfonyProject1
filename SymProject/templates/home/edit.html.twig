@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Nom - Prénom</th>
+        <th scope="col">N° de téléphone</th>
+        <th scope="col">N° de TVA</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for client in clients %}
+        <tr class="table-active">
+            <th scope="row">{{ client.name }} - {{ client.firstname }} </th>
+            <td>{{ client.phoneNumber }}</td>
+            <td>{{ client.tvaNumber }}</td>
+            <td>{{ client.adress }}</td>
+            <td><a href="{{ path('show_detail',{'id': client.id}) }}">
+                    <button type="button" class="btn btn-primary btn-sm">Détail</button></td>
+            </a>
+
+        </tr>
+    {% endfor %}
+    </div>
+{% endblock %}

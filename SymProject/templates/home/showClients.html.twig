@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Nom - Prénom</th>
+        <th scope="col">N° de téléphone</th>
+        <th scope="col">N° de TVA</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for client in clients %}
+    <tr class="table-active">
+        <th scope="row">{{ client.name }} - {{ client.firstname }} </th>
+        <td>{{ client.phoneNumber }}</td>
+        <td>{{ client.tvaNumber }}</td>
+        <td>{{ client.adress }}</td>
+        <td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal{{ client.id }}">Détail
+                </button>
+</td>
+        </div>
+        <div class="modal" id="myModal{{ client.id }}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nom : {{ client.firstname }} / Prénom : {{ client.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action ">Adresse : {{ client.adress }}</a>
+                            <a href="#" class="list-group-item list-group-item-action">Numéro de téléphone : {{ client.phoneNumber }}</a>
+                            <a href="#" class="list-group-item list-group-item-action ">Numéro de TVA : {{ client.tvaNumber }}</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ path('client_edit',{'id': client.id}) }}">
+                        <button type="button" class="btn btn-primary">Modifier</button></a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+{% endfor %}
+    </tbody>
+
+{% endblock %}

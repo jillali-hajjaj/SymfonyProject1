@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formClient 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+
+    <div class="createForm" style="margin-top:200px">
+        <h1>Formulaire de {% if editMode %} D'édition {% else %} Création {% endif %}</h1>
+        {{ form_start(formClient) }}
+    {{ form_widget(formClient) }}
+        {% if editMode %}
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        {% else %}
+            <button type="submit" class="btn btn-primary">Créer</button>
+        {% endif %}
+        {{ form_end(formClient) }}
+    </div>
+
+{% endblock %}
+
+
